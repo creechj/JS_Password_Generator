@@ -22,20 +22,30 @@ function passwordLength() {
       window.alert("Password must be 8-128 characters long.");
       passwordLength();
     }
+    console.log(passwordCharacters)
 }
 
 passwordLength();
 
-// user confirms for character type inclusions
-var passwordLower = window.confirm("Would you like to include lowercase characters in your password? Ok for Yes or Cancel for No");
-console.log(passwordLower);
+// function for character type inclusions
+// uses if logic to check that at least one option is confirmed and loops until true
+var passwordLower
+var passwordUpper
+var passwordSpecial
+function passwordInclusions() {
+  passwordLower = window.confirm("Would you like to include lowercase characters in your password? Ok for Yes or Cancel for No");
+  console.log(passwordLower);
+  passwordUpper = window.confirm("Would you like to include uppercase characters in your password? Ok for Yes or Cancel for No");
+  console.log(passwordUpper);
+  passwordSpecial = window.confirm("Would you like to include special characters in your password? Ok for Yes or Cancel for No");
+  console.log(passwordSpecial);
+  if(!passwordLower && !passwordUpper && !passwordSpecial){
+    window.alert("Please select at least on character type to include.")
+    passwordInclusions()
+  }
+}
 
-var passwordUpper = window.confirm("Would you like to include uppercase characters in your password? Ok for Yes or Cancel for No");
-console.log(passwordUpper);
-
-var passwordSpecial = window.confirm("Would you like to include special characters in your password? Ok for Yes or Cancel for No");
-console.log(passwordSpecial);
-
+passwordInclusions()
 
 // Write password to the #password input
 function writePassword() {
