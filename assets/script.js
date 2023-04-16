@@ -24,7 +24,7 @@ function passwordLength() {
     console.log(passwordCharacters);
 }
 
-passwordLength();
+// passwordLength();
 
 // function for character type inclusions - uses if logic to check that at least one option is confirmed and loops until true
 var passwordLower;
@@ -43,7 +43,7 @@ function passwordInclusions() {
   }
 }
 
-passwordInclusions();
+// passwordInclusions();
 
 // function to collect user parameters and calculate password - randomly selects array values and pushes to password-storing array with length equal to user selection
 // password array variable will be populated in this function before being written via writePassword below
@@ -51,9 +51,8 @@ var password = [];
 function generatePassword(len,low,upr,spl){
   var specChars = ["!","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","]","^","_","`","{","|","}",",","~","\\"," "];
   var alphaBet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-  var randChar
   
-  // function to randomize selections
+  // function to randomize password characters
   // compiles variables that randomly select an index for each character type array and store in a new index
   // an index for this array is selected at random and the result is pushed to the password array
   var randomCharacter = function(){
@@ -61,62 +60,45 @@ function generatePassword(len,low,upr,spl){
     var randomUpper = alphaBet[Math.floor(Math.random() * alphaBet.length)];
     var randomLower = alphaBet[Math.floor(Math.random() * alphaBet.length)].toLowerCase();
     var randomNumber = Math.floor(Math.random() * 10);
-    var characterSelection = [randomSpecial, randomUpper, randomLower, randomNumber];
-    randChar = characterSelection[Math.floor(Math.random() * 4)];
-    password.push(randChar)
+
+    // if logic checks character type responses from user and adjusts characterSelection array to meet specified criteria
+    if (low && upr && !spl){
+      characterSelection = [randomLower, randomUpper, randomNumber];
+      password.push(characterSelection[Math.floor(Math.random() * characterSelection.length)]);
+    } else if (low && !upr && spl){
+      characterSelection = [randomLower, randomSpecial, randomNumber];
+      password.push(characterSelection[Math.floor(Math.random() * characterSelection.length)]);
+    } else if (!low && upr && spl){
+      characterSelection = [randomUpper, randomSpecial, randomNumber];
+      password.push(characterSelection[Math.floor(Math.random() * characterSelection.length)]);
+    } else if (!low && !upr && spl){
+      characterSelection = [randomSpecial, randomNumber];
+      password.push(characterSelection[Math.floor(Math.random() * characterSelection.length)]);
+    } else if (!low && upr && !spl){
+      characterSelection = [randomUpper, randomNumber];
+      password.push(characterSelection[Math.floor(Math.random() * characterSelection.length)]);
+    } else if (low && !upr && !spl){
+      characterSelection = [randomLower, randomNumber];
+      password.push(characterSelection[Math.floor(Math.random() * characterSelection.length)]);
+    } else {
+      characterSelection = [randomLower, randomUpper, randomSpecial, randomNumber];
+      password.push(characterSelection[Math.floor(Math.random() * characterSelection.length)]);
+    }
   }
 
-  // if logic checks character type responses from user and adjusts characterSelection array to meet specified criteria
-  if (low && upr && !spl){
-    characterSelection.splice(0,1);
-    while(password.length < len){
-      randomCharacter();
-    }
-    console.log(password);
-  } else if (!low && upr && spl){
-    characterSelection.splice(2,1);
-    while(password.length < len){
-      randomCharacter();
-    }
-    console.log(password);
-  } else if (low && !upr && spl){
-    characterSelection.splice(1,1);
-    while(password.length < len){
-      randomCharacter();
-    }
-    console.log(password);
-  } else if (low && !upr && !spl){
-    characterSelection.splice(0,2);
-    while(password.length < len){
-      randomCharacter();
-    }
-    console.log(password);
-  } else if (!low && !upr && spl){
-    characterSelection.splice(1,2);
-    while(password.length < len){
-      randomCharacter();
-    }
-    console.log(password);
-  } else if (!low && upr && !spl){
-    characterSelection.splice(2,1);
-    characterSelection.splice(0,1);
-    while(password.length < len){
-      randomCharacter();
-    }
-    console.log(password);
-  } else {
-    while(password.length < len){
-      randomCharacter();
-    }
-    console.log(password);
+  // repeats randomCharacter generator until user-defined length is reached
+  while(password.length < len){
+    randomCharacter();
   }
+  
+  console.log(password)
 }
 
-generatePassword(passwordCharacters,passwordLower,passwordUpper,passwordSpecial)
-
-// Write password to the #password input
+// Write password to the #password input text area
 function writePassword() {
-  // var password = generatePassword();
+  passwordLength();
+  passwordInclusions();
+  generatePassword(passwordCharacters,passwordLower,passwordUpper,passwordSpecial)
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
