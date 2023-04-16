@@ -22,7 +22,7 @@ The site can be viewed at: https://creechj.github.io/JS_Password_Generator/
 
 GitHub repository for the site can be found here: https://github.com/creechj/JS_Password_Generator
 
-![Screenshot of Password Generator](assets/images/JCreech_Portfolio_Screenshot.png)
+![Screenshot of Password Generator](assets/JS_Password_Generator_Screenshot.png)
 
 ## Credits
 
