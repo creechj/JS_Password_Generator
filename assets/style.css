@@ -97,6 +97,7 @@ button[disabled] {
   float: right;
 }
 
+/* added vertial resize to allow viewing of 128 length passwords */
 #password {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -114,7 +115,7 @@ button[disabled] {
   margin-bottom: 10px;
   border: 2px dashed #c0c7cf;
   border-radius: 6px;
-  resize: none;
+  resize: vertical;
   overflow: hidden;
 }
 
