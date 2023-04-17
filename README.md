@@ -32,6 +32,9 @@ https://www.w3schools.com/jsref/default.asp
 The special character options were selected using guidance provided by OWASP Foundation:
 https://owasp.org/www-community/password-special-characters
 
+Array join method (to eliminate commas from string):
+https://javascript.plainenglish.io/how-to-turn-an-array-into-a-string-without-commas-in-javascript-241598bb054b
+
 ## License
 
 Please refer to LICENSE included in repository

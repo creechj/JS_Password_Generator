@@ -100,7 +100,7 @@ function writePassword() {
   passwordInclusions();
   generatePassword(passwordCharacters,passwordLower,passwordUpper,passwordSpecial)
   var passwordText = document.querySelector("#password");
-  passwordText.value = password;
+  passwordText.value = password.join("");
 }
 
 // Add event listener to generate button
